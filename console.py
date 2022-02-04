@@ -2,10 +2,11 @@ import pdb
 
 from models.merchant import Merchant
 from models.tag import Tag
-
+from models.transaction import Transaction
 
 import repositories.merchant_repository as merchant_repository
 import repositories.tag_repository as tag_repository
+import repositories.transaction_repository as transaction_repository
 
 merchant_repository.delete_all()
 tag_repository.delete_all()
@@ -23,10 +24,19 @@ tag2 = Tag('Tax')
 tag_repository.save(tag2)
 
 
-results = tag_repository.select_all()
+transaction1 = Transaction('2022-01-31', 30.5, merchant1, tag1)
+transaction_repository.save(transaction1)
+
+results = transaction_repository.select_all()
 
 for result in results:
     print(result.__dict__)
+
+
+# results = tag_repository.select_all()
+
+# for result in results:
+#     print(result.__dict__)
 
 # single_tag_select = tag_repository.select(4)
 
