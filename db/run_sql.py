@@ -7,7 +7,7 @@ def run_sql(sql, values = None):
 
     try:
         conn=psycopg2.connect("dbname='expenditure'")
-        cur = conn.cursor(cursor_factory=ext.Dictcursor)
+        cur = conn.cursor(cursor_factory=ext.DictCursor)
         cur.execute(sql, values)
         conn.commit()
         results = cur.fetchall()
