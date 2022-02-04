@@ -32,32 +32,25 @@ transaction2 = Transaction('2021-12-23', 199.99, merchant2, tag1)
 transaction_repository.save(transaction2)
 
 
-results = transaction_repository.select_all()
-
-for result in results:
-    print(result.__dict__)
-
-# select_one_transaction = transaction_repository.select()
-# print(select_one_transaction.__dict__)
 
 
+#Show all transactions
+# tran_results = transaction_repository.select_all()
 
-
-# results = tag_repository.select_all()
-
-# for result in results:
+# for result in tran_results:
 #     print(result.__dict__)
 
-# single_tag_select = tag_repository.select(4)
 
-# print(single_tag_select.__dict__)
+#Show all tags
+# tag_results = tag_repository.select_all()
 
-
-# results = merchant_repository.select_all()
-
-# for result in results:
+# for result in tag_results:
 #     print(result.__dict__)
 
-# single_select_result = merchant_repository.select(5)
 
-# print(single_select_result.__dict__)
+
+#Show all merchants
+# merch_results = merchant_repository.select_all()
+
+# for result in merch_results:
+#     print(result.__dict__)
