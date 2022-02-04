@@ -1,9 +1,11 @@
 import pdb
 
 from models.merchant import Merchant
+from models.tag import Tag
 
 
 import repositories.merchant_repository as merchant_repository
+import repositories.tag_repository as tag_repository
 
 merchant_repository.delete_all()
 
@@ -13,10 +15,26 @@ merchant_repository.save(merchant1)
 merchant2 = Merchant('Amazon')
 merchant_repository.save(merchant2)
 
-results = merchant_repository.select_all()
+tag1 = Tag('Grocery')
+tag_repository.save(tag1)
+
+tag2 = Tag('Tax')
+tag_repository.save(tag2)
+
+
+results = tag_repository.select_all()
 
 for result in results:
     print(result.__dict__)
+
+
+
+
+
+# results = merchant_repository.select_all()
+
+# for result in results:
+#     print(result.__dict__)
 
 # single_select_result = merchant_repository.select(5)
 
