@@ -5,6 +5,8 @@ from models.merchant import Merchant
 
 import repositories.merchant_repository as merchant_repository
 
+merchant_repository.delete_all()
+
 merchant1 = Merchant('Tesco')
 merchant_repository.save(merchant1)
 
@@ -16,6 +18,6 @@ results = merchant_repository.select_all()
 for result in results:
     print(result.__dict__)
 
-single_select_result = merchant_repository.select(5)
+# single_select_result = merchant_repository.select(5)
 
-print(single_select_result.__dict__)
+# print(single_select_result.__dict__)
