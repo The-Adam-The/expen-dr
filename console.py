@@ -8,6 +8,7 @@ import repositories.merchant_repository as merchant_repository
 import repositories.tag_repository as tag_repository
 
 merchant_repository.delete_all()
+tag_repository.delete_all()
 
 merchant1 = Merchant('Tesco')
 merchant_repository.save(merchant1)
@@ -27,8 +28,9 @@ results = tag_repository.select_all()
 for result in results:
     print(result.__dict__)
 
+# single_tag_select = tag_repository.select(4)
 
-
+# print(single_tag_select.__dict__)
 
 
 # results = merchant_repository.select_all()
