@@ -31,7 +31,6 @@ def select_all():
         return transactions
 
 def select(id):
-
     sql = "SELECT * FROM transactions WHERE id = %s"
     values = [id]
     result = run_sql(sql, values)[0]
@@ -42,6 +41,7 @@ def select(id):
         transaction = Transaction(result['date'], result['amount'], merchant, tag, result['id'])
         return transaction
 
+
 def delete_all():
     sql = "DELETE FROM transactions"
     run_sql(sql)
@@ -50,4 +50,4 @@ def delete(id):
     sql = "DELETE FROM transactions WHERE id = %s"
     values = [id]
     run_sql(sql, values)
-    
+
