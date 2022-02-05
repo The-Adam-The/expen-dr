@@ -1,0 +1,8 @@
+{% extends 'base.html'%}
+{% block content %}
+
+    {% for merchant in merchants  %}
+        {{merchant.name}}    
+    {% endfor %}
+
+{% endblock %}
