@@ -3,7 +3,7 @@
 <ul>
 {% for transaction in transactions %}
 
-    <li>{{transaction.date}} £{{transaction.amount}} {{transaction.merchant.name}} {{transaction.tag.name}}</li>
+    <li><a href="transactions/{{transaction.id}}">{{transaction.date}}</a> £{{transaction.amount}} <a href="merchants/{{transaction.merchant.id}}">{{transaction.merchant.name}}</a>   <a href="tags/{{transaction.tag.id}}">{{transaction.tag.name}}</a></li>
     
 {% endfor %}
 </ul>
