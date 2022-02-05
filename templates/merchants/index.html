@@ -1,8 +1,14 @@
 {% extends 'base.html'%}
 {% block content %}
+
+    <a href="merchants/new"><p>Add Merchant</p></a>
     <ul>
     {% for merchant in merchants  %}
-        <li>    <a href="/merchants/{{merchant.id}}">{{merchant.name}} </a>   </li>
+        <li>    <a href="merchants/{{merchant.id}}">{{merchant.name}} </a>
+                <a href=""><p>Update</p></a>
+                <a href=""><p>Delete</p></a>
+        
+        </li> 
     {% endfor %}
     </ul>
 {% endblock %}

@@ -33,6 +33,11 @@ def select(id):
         merchant = Merchant(result['name'], result['id'])
     return merchant
 
+# def update_merchant(id):
+
+
+
+
 def delete_all():
     sql = "DELETE FROM merchants"
     run_sql(sql)
