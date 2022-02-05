@@ -23,7 +23,7 @@ def new_merchant():
 
 @merchants_blueprint.route('/merchants', methods=['POST'])
 def add_merchant():
-    name = request.form['name']
+    name = request.form['name'].capitalize()
     merchant = Merchant(name)
     merchant_repository.save(merchant)
     return redirect('/merchants')
