@@ -54,3 +54,5 @@ for result in tran_results:
 
 # for result in merch_results:
 #     print(result.__dict__)
+
+pdb.set_trace()
