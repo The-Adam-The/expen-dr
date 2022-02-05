@@ -1,8 +1,10 @@
 {% extends 'base.html'%}
 {% block content %}
-
+    <ul>
     {% for merchant in merchants  %}
+        <li>
         {{merchant.name}}    
+        </li>
     {% endfor %}
-
+    </ul>
 {% endblock %}
