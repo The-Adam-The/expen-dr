@@ -9,3 +9,8 @@ merchants_blueprint = Blueprint('merchants', __name__)
 def merchants():
     merchants = merchant_repository.select_all()
     return render_template('merchants/index.html', merchants=merchants)
+
+@merchants_blueprint.route('/merchants/<id>')
+def show(id):
+    merchant = merchant_repository.select(id)
+    return render_template('merchants/show.html', merchant=merchant)

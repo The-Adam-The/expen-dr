@@ -35,10 +35,10 @@ transaction_repository.save(transaction2)
 
 
 #Show all transactions
-# tran_results = transaction_repository.select_all()
+tran_results = transaction_repository.select_all()
 
-# for result in tran_results:
-#     print(result.__dict__)
+for result in tran_results:
+    print(result.__dict__)
 
 
 #Show all tags
