@@ -36,7 +36,8 @@ def add_transaction():
 @transaction_blueprint.route('/transactions')
 def transactions():
     transactions = transaction_repository.select_all()
-    return render_template('transactions/index.html', transactions=transactions)
+    total_spent = Transaction.total_spending(transactions)
+    return render_template('transactions/index.html', transactions=transactions, total_spent=total_spent)
 
 #Read One
 @transaction_blueprint.route('/transactions/<id>')

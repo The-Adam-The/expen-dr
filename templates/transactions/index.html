@@ -2,7 +2,42 @@
 {% block content %}
 
 <a href="transactions/new"><p>Add Transaction</p></a>
-<ul>
+<section class="main-info">
+    <div class="table-div">
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Merchant</th>
+            <th>Tag</th>
+            <th></th>
+            <th></th>
+        </tr>
+            {% for transaction in transactions  %}
+        <tr>
+            <td><a href="transactions/{{transaction.id}}">{{transaction.date}}</a></td>
+            <td>£{{transaction.amount}} <a href="merchants/{{transaction.merchant.id}}"></a></td>
+            <td><a href="merchants/{{transaction.merchant.id}}">{{transaction.merchant.name}}</a> </td>
+            <td><a href="tags/{{transaction.tag.id}}">{{transaction.tag.name}}</a></td>
+            <td><form action="transactions/{{transaction.id}}/edit">
+                <button type="submit">Update</button>
+            </form></td>
+            <td> <form action="/transactions/{{transaction.id}}/delete" method="post">
+                <button type="submit">Delete</button>
+            </form></td>
+        </tr>   
+            {% endfor %}
+    </table>
+    </div>
+
+
+<div class="summary-div">
+<h2 class="expense-statement">Your total expenditure for this period is: £{{total_spent}}</h2>
+</div>
+</section>
+
+
+<!-- <ul>
 {% for transaction in transactions %}
 
     <li><a href="transactions/{{transaction.id}}">{{transaction.date}}</a> £{{transaction.amount}} <a href="merchants/{{transaction.merchant.id}}">{{transaction.merchant.name}}</a>   <a href="tags/{{transaction.tag.id}}">{{transaction.tag.name}}</a></li>
@@ -14,6 +49,7 @@
         <button type="submit">Delete</button>
     </form>
 {% endfor %}
-</ul>
+</ul> -->
 
 {% endblock %}
+

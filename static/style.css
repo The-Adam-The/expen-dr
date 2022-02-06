@@ -1,0 +1,108 @@
+body {
+    background-color: #F6F5F5;
+}
+
+
+
+h1 {
+    /* font-family: 'Corben', cursive; */
+    font-family: 'Baloo Tamma 2', cursive;
+    font-size: 3.2em;
+}
+
+h2, h3, h4, h5, p, ul, td, th {
+    font-family: 'Baloo Tamma 2', cursive;
+}
+
+nav > ul {
+    list-style-type: none;
+    text-decoration: none;
+    /* font-family: 'Baloo Tamma 2', cursive; */
+    font-size: 1.5em;
+    margin-right: 30px 
+}
+
+li {
+    display: inline;
+    margin: 0 5px;
+    
+}
+
+.nav-links {
+    text-decoration: none;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#header-logo {
+    margin: 20px 0 10px 25px;
+    color: #30475E;
+}
+
+#logo-first-slash {
+    color: #EE6F57;
+}
+
+
+.nav-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+ 
+}
+
+.main-content {
+    padding: 10px;
+}
+
+.table-div {
+    width: 50%;
+}
+.summary-div {
+ 
+    width: 50%;
+}
+
+table {
+    border: 1px solid #00334E;
+    border-radius: 10px;
+}
+
+th, td {
+    padding: 10px;
+    margin: 10px;
+    width: 80px;
+    border-bottom: 1px #00334E solid;
+}
+
+th {
+    font-weight: 500;
+    font-size: 1em;    
+}
+
+.expense-statement {
+    color: #EE6F57;
+    padding: 20px;
+    border: 1px #00334E solid;
+    border-radius: 10px;
+    width: auto;
+    text-align: center;
+}
+
+.main-info {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+
+/* 
+
+https://colorhunt.co/palette/f6f5f514537400334eee6f57 */
+
+
