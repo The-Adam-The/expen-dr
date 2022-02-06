@@ -7,6 +7,14 @@
 
     <li>
        <a href="tags/{{tag.id}}">{{ tag.name }}</a></li>
+
+       <form action="tags/{{tag.id}}/edit">
+            <button type="submit">Update</button>
+        </form>
+
+        <form action="/tags/{{tag.id}}/delete" method="post">
+            <button type="submit">Delete</button>
+        </form>
     
 {% endfor %}
 </ul>
