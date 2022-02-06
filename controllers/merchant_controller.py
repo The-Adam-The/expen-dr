@@ -7,18 +7,8 @@ import repositories.merchant_repository as merchant_repository
 
 merchants_blueprint = Blueprint('merchants', __name__)
 
-@merchants_blueprint.route('/merchants', methods=['GET'])
-def merchants():
-    merchants = merchant_repository.select_all()
-    return render_template('merchants/index.html', merchants=merchants)
 
-
-@merchants_blueprint.route('/merchants/<id>', methods=['GET'])
-def show(id):
-    merchant = merchant_repository.select(id)
-    return render_template('merchants/show.html', merchant=merchant)
-
-
+#Create
 @merchants_blueprint.route('/merchants/new', methods=['GET'])
 def new_merchant():
     return render_template("merchants/new.html")
@@ -31,6 +21,21 @@ def add_merchant():
     merchant_repository.save(merchant)
     return redirect('/merchants')
 
+
+#Read all
+@merchants_blueprint.route('/merchants', methods=['GET'])
+def merchants():
+    merchants = merchant_repository.select_all()
+    return render_template('merchants/index.html', merchants=merchants)
+
+#Read One
+@merchants_blueprint.route('/merchants/<id>', methods=['GET'])
+def show(id):
+    merchant = merchant_repository.select(id)
+    return render_template('merchants/show.html', merchant=merchant)
+
+
+#Update
 @merchants_blueprint.route('/merchants/<id>/edit', methods=['GET'])
 def edit_merchant(id):
     merchant = merchant_repository.select(id)
@@ -42,4 +47,10 @@ def update_merchant(id):
     name = request.form['name']
     merchant = Merchant(name, id)
     merchant_repository.update_merchant(merchant)
+    return redirect('/merchants')
+
+#Delete 
+@merchants_blueprint.route('/merchants/<id>/delete', methods=['POST'])
+def delete_merchant(id):
+    merchant_repository.delete(id)
     return redirect('/merchants')

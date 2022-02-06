@@ -9,16 +9,9 @@ import repositories.merchant_repository as merchant_repository
 
 transaction_blueprint = Blueprint("transaction", __name__)
 
-@transaction_blueprint.route('/transactions')
-def transactions():
-    transactions = transaction_repository.select_all()
-    return render_template('transactions/index.html', transactions=transactions)
 
-@transaction_blueprint.route('/transactions/<id>')
-def show(id):
-    transaction = transaction_repository.select(id)
-    return render_template('transactions/show.html', transaction=transaction)
 
+#Create 
 @transaction_blueprint.route('/transactions/new')
 def new_transaction():
     tags = tag_repository.select_all()
@@ -38,3 +31,19 @@ def add_transaction():
     transaction = Transaction(date, amount, merchant, tag)
     transaction_repository.save(transaction)
     return redirect('/transactions')
+
+#Read All
+@transaction_blueprint.route('/transactions')
+def transactions():
+    transactions = transaction_repository.select_all()
+    return render_template('transactions/index.html', transactions=transactions)
+
+#Read One
+@transaction_blueprint.route('/transactions/<id>')
+def show(id):
+    transaction = transaction_repository.select(id)
+    return render_template('transactions/show.html', transaction=transaction)
+
+#Update
+
+#Delete
