@@ -1,15 +1,19 @@
-{% extends 'base.html'%}
-{% block content %}
 
-<form action="/transactions" method="post">
+
+<p>{{transaction.date}} £{{transaction.amount}} {{transaction.merchant.name}} {{transaction.tag.name}} {{transaction.id}}</p>
+<form action="/transactions/{{transaction.id}}" method="post">
     <div>
         <label for="date">Transaction Date:</label>
-        <input type="date", id="transaction-date" name="date" required autofocus>
+        <input type="date" name="date" required >
     </div>
+    
+    
     <div>
-        <label for="amount">Amount</label>
+        <label> Amount </label>
         <input type="number" id="transaction-amount" name="amount" required>
     </div>
+
+   
     <div>
         <label for="merchant">Merchant</label>
         <select name="merchant" id="transaction-merchant-name">
@@ -29,8 +33,7 @@
         </select>
     </div>
 
-    <button type="submit">Add Transaction</button>
+    <button type="submit">Update Transaction</button>
+
 
 </form>
-
-{% endblock %}

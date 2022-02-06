@@ -32,6 +32,12 @@ def select(id):
         tag = Tag(result['name'], result['id'])
     return tag
 
+def update_tag(tag):
+    sql = "UPDATE tags SET name = %s WHERE id = %s"
+    values = [tag.name, tag.id]
+    run_sql(sql, values)
+
+
 def delete_all():
     sql = "DELETE FROM tags"
     run_sql(sql)

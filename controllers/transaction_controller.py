@@ -9,7 +9,7 @@ import repositories.merchant_repository as merchant_repository
 
 transaction_blueprint = Blueprint("transaction", __name__)
 
-
+trans_last_output= []
 
 #Create 
 @transaction_blueprint.route('/transactions/new')
@@ -45,5 +45,33 @@ def show(id):
     return render_template('transactions/show.html', transaction=transaction)
 
 #Update
+@transaction_blueprint.route('/transactions/<id>/edit')
+def edit_transaction(id):
+    transaction = transaction_repository.select(id)
+    tags = tag_repository.select_all()
+    merchants = merchant_repository.select_all()
+    return render_template('transactions/edit.html', transaction=transaction, merchants=merchants, tags=tags)
+
+
+@transaction_blueprint.route('/transactions/<id>', methods=['POST'])
+def update_transaction(id):
+    date = request.form['date']
+    amount = request.form['amount']
+    merchant_id = request.form['merchant']
+    tag_id = request.form['tag']
+
+    trans_last_output = [date, amount, merchant_id, tag_id, id]
+
+    merchant = merchant_repository.select(merchant_id)
+    tag = tag_repository.select(tag_id)
+
+    transaction = Transaction(date, amount, merchant, tag, id)
+    transaction_repository.update_transaction(transaction)
+    return redirect('/transactions')
+
 
 #Delete
+@transaction_blueprint.route('/transactions/<id>/delete', methods=['POST'])
+def delete_transaction(id):
+    transaction_repository.delete(id)
+    return redirect('/transactions')

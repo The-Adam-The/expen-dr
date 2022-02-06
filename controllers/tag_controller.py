@@ -34,5 +34,21 @@ def show(id):
 
 
 #Update
+@tags_blueprint.route('/tags/<id>/edit')
+def edit_tag(id):
+    tag = tag_repository.select(id)
+    return render_template('tags/edit.html', tag=tag)
+
+@tags_blueprint.route('/tags/<id>', methods=['POST'])
+def update_tag(id):
+    name = request.form['name']
+    tag = Tag(name, id)
+    tag_repository.update_tag(tag)
+    return redirect('/tags')
+
 
 #Delete
+@tags_blueprint.route('/tags/<id>/delete', methods=['POST'])
+def delete_tag(id):
+    tag_repository.delete(id)
+    return redirect('/tags')
