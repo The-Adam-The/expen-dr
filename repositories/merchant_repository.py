@@ -39,8 +39,6 @@ def update_merchant(merchant):
     run_sql(sql, values)
 
 
-
-
 def delete_all():
     sql = "DELETE FROM merchants"
     run_sql(sql)

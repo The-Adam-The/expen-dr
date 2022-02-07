@@ -27,7 +27,7 @@ def create_transaction(min_payment= 1, max_payment = 1000, start_date = '-2y', e
     merchants = merchant_repository.select_all()
     tags = tag_repository.select_all()
     fake = Faker()
-    random_date = fake.date_between(start_date, end_date='now')
+    random_date = fake.date_between(start_date, end_date)
     random_payment = random.randrange(min_payment, max_payment)
     random_merchant = random.choice(merchants)
     random_tag = random.choice(tags)

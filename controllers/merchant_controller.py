@@ -4,6 +4,7 @@ from flask import Blueprint
 from models.merchant import Merchant
 
 import repositories.merchant_repository as merchant_repository
+import repositories.transaction_repository as transaction_repository
 
 merchants_blueprint = Blueprint('merchants', __name__)
 
@@ -28,11 +29,12 @@ def merchants():
     merchants = merchant_repository.select_all()
     return render_template('merchants/index.html', merchants=merchants)
 
-#Read One
+
 @merchants_blueprint.route('/merchants/<id>', methods=['GET'])
 def show(id):
     merchant = merchant_repository.select(id)
-    return render_template('merchants/show.html', merchant=merchant)
+    transactions = transaction_repository.select_by_merchant(merchant)
+    return render_template('merchants/show.html', merchant=merchant, transactions=transactions)
 
 
 #Update

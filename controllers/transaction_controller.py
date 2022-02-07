@@ -14,8 +14,8 @@ import repositories.merchant_repository as merchant_repository
 
 
 #date vars
-today_date = datetime.date.today()
-first_of_month = today_date.replace(day=1)
+# today_date = datetime.date.today()
+# first_of_month = today_date.replace(day=1)
 
 transaction_blueprint = Blueprint("transaction", __name__)
 
@@ -63,11 +63,14 @@ def change_date_transactions():
 
 
 
-#Read One
 @transaction_blueprint.route('/transactions/<id>')
 def show(id):
+    
     transaction = transaction_repository.select(id)
-    return render_template('transactions/show.html', transaction=transaction)
+    daily_transactions = transaction_repository.select_by_date(transaction.date, transaction.date)
+    total_spent = Transaction.total_spending(daily_transactions)
+    
+    return render_template('transactions/show.html', transaction=transaction, daily_transactions=daily_transactions, total_spent=total_spent)
 
 #Update
 @transaction_blueprint.route('/transactions/<id>/edit')
