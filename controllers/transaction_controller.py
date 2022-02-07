@@ -37,10 +37,18 @@ def add_transaction():
 #Read All
 @transaction_blueprint.route('/transactions')
 def transactions():
-    transactions = transaction_repository.select_all()
-    total_spent = Transaction.total_spending(transactions)
     today_date = datetime.date.today()
     first_of_month = today_date.replace(day=1)
+    
+    # transactions = transaction_repository.select_all()
+    transactions = transaction_repository.select_by_date(first_of_month, today_date)
+    total_spent = Transaction.total_spending(transactions)
+
+@transaction_blueprint.route('/transaction/<start_date>/<end_date', methods=['POST'])
+def change_date_transactions(start_date, end_date):
+    pass
+
+    
 
     return render_template('transactions/index.html', transactions=transactions, total_spent=total_spent, today_date=today_date, first_of_month=first_of_month)
 

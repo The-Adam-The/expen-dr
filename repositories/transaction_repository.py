@@ -41,6 +41,21 @@ def select(id):
         transaction = Transaction(result['date'], result['amount'], merchant, tag, result['id'])
         return transaction
 
+def select_by_date(start_date, end_date):
+    transactions = []
+
+    sql = "SELECT * FROM transactions WHERE date BETWEEN %s AND %s"
+    values = [start_date, end_date]
+    results = run_sql(sql, values)
+
+    if results is not None:
+        for row in results:
+            merchant = merchant_repository.select(row['merchant_id'])
+            tag = tag_repository.select(row['tag_id'])
+            transaction = Transaction(row['date'], row['amount'], merchant, tag, row['id'])
+            transactions.append(transaction)
+    return transactions
+
 def update_transaction(transaction):
     sql = "UPDATE transactions SET(date, merchant_id, tag_id, amount) = (%s, %s, %s, %s) WHERE id = %s"
     values = [transaction.date, transaction.merchant.id,  transaction.tag.id, transaction.amount, transaction.id]
