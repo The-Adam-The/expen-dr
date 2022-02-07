@@ -24,12 +24,12 @@
                     <td><a href="merchants/{{transaction.merchant.id}}">{{transaction.merchant.name}}</a> </td>
                     <td><a href="tags/{{transaction.tag.id}}">{{transaction.tag.name}}</a></td>
                     <td><form action="transactions/{{transaction.id}}/edit">
-                            <button type="submit">Update</button>
+                            <button class="button" type="submit">Update</button>
                         </form>
                     </td>
                     <td> 
                         <form action="/transactions/{{transaction.id}}/delete" method="post">
-                            <button type="submit">Delete</button>
+                            <button class="button" type="submit">Delete</button>
                         </form>
                     </td>
                 </tr>   

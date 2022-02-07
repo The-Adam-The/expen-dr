@@ -15,12 +15,12 @@
         <td><a href="tags/{{tag.id}}">{{ tag.name }}</a></td>
         <td>
             <form action="tags/{{tag.id}}/edit">
-                <button type="submit">Update</button>
+                <button class="button" type="submit">Update</button>
             </form>
         </td>
         <td>
             <form action="/tags/{{tag.id}}/delete" method="post">
-                <button type="submit">Delete</button>
+                <button class="button" type="submit">Delete</button>
             </form>
         </td>
     </tr>
