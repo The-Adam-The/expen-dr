@@ -3,12 +3,12 @@
 <div class="section-split">
     <section class="main-info">
         <section class="top-section">
-            <form action="date_range">
+            <form action="/transactions/change_date" method="post">
                 <div>
                     <label for="start_date">Start Date</label>
-                    <input type="date" id="start_date" name="start_date" value="{{first_of_month}}">
+                    <input type="date" id="start_date" name="start_date" value="{{date_selector.start_date}}">
                     <label for="end_date">End Date</label>
-                    <input type="date" id="end_date" name="end_date" value="{{today_date}}">
+                    <input type="date" id="end_date" name="end_date" value="{{date_selector.end_date}}">
                     <button type="submit">Apply</button>
                 </div>
             </form>

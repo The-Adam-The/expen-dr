@@ -1,13 +1,21 @@
+from urllib.request import Request
 from flask import Flask, render_template, request, redirect
 from flask import Blueprint
 import datetime
 
 from models.transaction import Transaction
+from models.date import Date
+from models.date_object import date_selector 
+
 
 import repositories.transaction_repository as transaction_repository
 import repositories.tag_repository as tag_repository
 import repositories.merchant_repository as merchant_repository
 
+
+#date vars
+today_date = datetime.date.today()
+first_of_month = today_date.replace(day=1)
 
 transaction_blueprint = Blueprint("transaction", __name__)
 
@@ -37,20 +45,23 @@ def add_transaction():
 #Read All
 @transaction_blueprint.route('/transactions')
 def transactions():
-    today_date = datetime.date.today()
-    first_of_month = today_date.replace(day=1)
     
-    # transactions = transaction_repository.select_all()
-    transactions = transaction_repository.select_by_date(first_of_month, today_date)
-    total_spent = Transaction.total_spending(transactions)
+    transactions = transaction_repository.select_by_date(date_selector.start_date, date_selector.end_date)
+    total_spent = Transaction.total_spending(transactions) 
 
-@transaction_blueprint.route('/transaction/<start_date>/<end_date', methods=['POST'])
-def change_date_transactions(start_date, end_date):
-    pass
+    return render_template('transactions/index.html', transactions=transactions, total_spent=total_spent, date_selector=date_selector)
 
-    
 
-    return render_template('transactions/index.html', transactions=transactions, total_spent=total_spent, today_date=today_date, first_of_month=first_of_month)
+@transaction_blueprint.route('/transactions/change_date', methods=['POST'])
+def change_date_transactions():
+    start_date = request.form['start_date']
+    end_date = request.form['end_date']
+
+    global date_selector
+    date_selector = Date(start_date, end_date)
+    return redirect('/transactions')
+
+
 
 #Read One
 @transaction_blueprint.route('/transactions/<id>')
