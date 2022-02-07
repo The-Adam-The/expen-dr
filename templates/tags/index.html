@@ -2,21 +2,31 @@
 
 {% block content %}
 <a href="tags/new"><p>Add Tag</p></a>
-<ul>
-{% for tag in tags  %}
 
-    <li>
-       <a href="tags/{{tag.id}}">{{ tag.name }}</a></li>
+<table>
+    <tr>
+        <th>Name</th>
+        <th></th>
+        <th></th>
+    </tr>
+    {% for tag in tags  %}
+        
+    <tr>
+        <td><a href="tags/{{tag.id}}">{{ tag.name }}</a></td>
+        <td>
+            <form action="tags/{{tag.id}}/edit">
+                <button type="submit">Update</button>
+            </form>
+        </td>
+        <td>
+            <form action="/tags/{{tag.id}}/delete" method="post">
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
 
-       <form action="tags/{{tag.id}}/edit">
-            <button type="submit">Update</button>
-        </form>
 
-        <form action="/tags/{{tag.id}}/delete" method="post">
-            <button type="submit">Delete</button>
-        </form>
-    
-{% endfor %}
-</ul>
 
 {% endblock %}
