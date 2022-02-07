@@ -1,11 +1,13 @@
 from flask import Flask, render_template, request, redirect
 from flask import Blueprint
+import datetime
 
 from models.transaction import Transaction
 
 import repositories.transaction_repository as transaction_repository
 import repositories.tag_repository as tag_repository
 import repositories.merchant_repository as merchant_repository
+
 
 transaction_blueprint = Blueprint("transaction", __name__)
 
@@ -37,7 +39,10 @@ def add_transaction():
 def transactions():
     transactions = transaction_repository.select_all()
     total_spent = Transaction.total_spending(transactions)
-    return render_template('transactions/index.html', transactions=transactions, total_spent=total_spent)
+    today_date = datetime.date.today()
+    first_of_month = today_date.replace(day=1)
+
+    return render_template('transactions/index.html', transactions=transactions, total_spent=total_spent, today_date=today_date, first_of_month=first_of_month)
 
 #Read One
 @transaction_blueprint.route('/transactions/<id>')

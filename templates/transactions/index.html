@@ -1,43 +1,61 @@
 {% extends 'base.html'%}
 {% block content %}
+<div class="section-split">
+    <section class="main-info">
+        <section class="top-section">
+            <form action="date_range">
+                <div>
+                    <label for="start_date">Start Date</label>
+                    <input type="date" id="start_date" name="start_date" value="{{first_of_month}}">
+                    <label for="end_date">End Date</label>
+                    <input type="date" id="end_date" name="end_date" value="{{today_date}}">
+                    <button type="submit">Apply</button>
+                </div>
+            </form>
+        
+            <form action="transactions/new" class="transaction-new-button">
+                <button value="submit">Add Transaction</button>
+            </form>
+        </section>
+        <div class="table-div">
+            <table>
+                <tr>
+                    <th>Date</th>
+                    <th>Amount</th>
+                    <th>Merchant</th>
+                    <th>Tag</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                {% for transaction in transactions  %}
+                <tr>
+                    <td><a href="transactions/{{transaction.id}}">{{transaction.date}}</a></td>
+                    <td>£{{transaction.amount}} <a href="merchants/{{transaction.merchant.id}}"></a></td>
+                    <td><a href="merchants/{{transaction.merchant.id}}">{{transaction.merchant.name}}</a> </td>
+                    <td><a href="tags/{{transaction.tag.id}}">{{transaction.tag.name}}</a></td>
+                    <td><form action="transactions/{{transaction.id}}/edit">
+                            <button type="submit">Update</button>
+                        </form>
+                    </td>
+                    <td> 
+                        <form action="/transactions/{{transaction.id}}/delete" method="post">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>   
+                {% endfor %}
+            </table>
+        </div>
 
-<a href="transactions/new"><p>Add Transaction</p></a>
-<section class="main-info">
-    <div class="table-div">
-    <table>
-        <tr>
-            <th>Date</th>
-            <th>Amount</th>
-            <th>Merchant</th>
-            <th>Tag</th>
-            <th></th>
-            <th></th>
-        </tr>
-            {% for transaction in transactions  %}
-        <tr>
-            <td><a href="transactions/{{transaction.id}}">{{transaction.date}}</a></td>
-            <td>£{{transaction.amount}} <a href="merchants/{{transaction.merchant.id}}"></a></td>
-            <td><a href="merchants/{{transaction.merchant.id}}">{{transaction.merchant.name}}</a> </td>
-            <td><a href="tags/{{transaction.tag.id}}">{{transaction.tag.name}}</a></td>
-            <td><form action="transactions/{{transaction.id}}/edit">
-                    <button type="submit">Update</button>
-                </form>
-            </td>
-            <td> 
-                <form action="/transactions/{{transaction.id}}/delete" method="post">
-                    <button type="submit">Delete</button>
-                </form>
-            </td>
-        </tr>   
-            {% endfor %}
-    </table>
-    </div>
+    </section>
+    <section class="summary">
+        <h2 class="expense-statement">Your total expenditure for this period is: £{{total_spent}}</h2>
+    
+    <section class="graph-space">
 
-
-<div class="summary-div">
-<h2 class="expense-statement">Your total expenditure for this period is: £{{total_spent}}</h2>
-</div>
+    </section>
 </section>
+</div>
 
 {% endblock %}
 
