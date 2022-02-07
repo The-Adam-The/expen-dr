@@ -2,8 +2,10 @@ from flask import Flask, render_template, request, redirect
 from flask import Blueprint
 
 from models.tag import Tag
+from models.transaction import Transaction
 
 import repositories.tag_repository as tag_repository
+import repositories.transaction_repository as transaction_repository
 
 tags_blueprint = Blueprint("tags", __name__)
 
@@ -26,11 +28,13 @@ def tags():
     tags = tag_repository.select_all()
     return render_template('tags/index.html', tags=tags)
 
-#Read one
+
 @tags_blueprint.route('/tags/<id>')
 def show(id):
     tag = tag_repository.select(id)
-    return render_template('tags/show.html', tag=tag)
+    transactions = transaction_repository.select_by_tag(tag)
+    total_spent = Transaction.total_spending(transactions)
+    return render_template('tags/show.html', tag=tag, transactions=transactions, total_spent=total_spent)
 
 
 #Update

@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect
 from flask import Blueprint
 
 from models.merchant import Merchant
+from models.transaction import Transaction
 
 import repositories.merchant_repository as merchant_repository
 import repositories.transaction_repository as transaction_repository
@@ -34,7 +35,8 @@ def merchants():
 def show(id):
     merchant = merchant_repository.select(id)
     transactions = transaction_repository.select_by_merchant(merchant)
-    return render_template('merchants/show.html', merchant=merchant, transactions=transactions)
+    total_spent = Transaction.total_spending(transactions)
+    return render_template('merchants/show.html', merchant=merchant, transactions=transactions, total_spent=total_spent)
 
 
 #Update
