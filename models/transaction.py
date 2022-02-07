@@ -10,6 +10,8 @@ class Transaction:
     def total_spending(transactions):
         amount_list = []
         for transaction in transactions:
-            amount_list.append(transaction.amount)
-            
-        return sum(amount_list)
+            amount_list.append(transaction.amount)   
+        return '{num:.2f}'.format(num = sum(amount_list))
+
+    def amount_formatted(self):
+        return '{num:.2f}'.format(num = self.amount)

@@ -12,11 +12,6 @@ import repositories.transaction_repository as transaction_repository
 import repositories.tag_repository as tag_repository
 import repositories.merchant_repository as merchant_repository
 
-
-#date vars
-# today_date = datetime.date.today()
-# first_of_month = today_date.replace(day=1)
-
 transaction_blueprint = Blueprint("transaction", __name__)
 
 trans_last_output= []
@@ -45,10 +40,14 @@ def add_transaction():
 #Read All
 @transaction_blueprint.route('/transactions')
 def transactions():
-    
+
     transactions = transaction_repository.select_by_date(date_selector.start_date, date_selector.end_date)
     total_spent = Transaction.total_spending(transactions) 
 
+    for transaction in transactions:
+        transaction = transaction.amount_formatted()
+
+   
     return render_template('transactions/index.html', transactions=transactions, total_spent=total_spent, date_selector=date_selector)
 
 
