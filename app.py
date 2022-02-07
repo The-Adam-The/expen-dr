@@ -12,7 +12,7 @@ app.register_blueprint(tags_blueprint)
 app.register_blueprint(transaction_blueprint)
 
 
-@app.route('/')
+@app.route('/index')
 def home():
     return render_template('index.html')
 

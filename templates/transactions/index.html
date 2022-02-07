@@ -5,10 +5,10 @@
         <section class="top-section">
             <form action="/transactions/change_date" method="post">
                 <div>
-                    <label for="start_date">Start Date</label>
-                    <input type="date" id="start_date" name="start_date" value="{{date_selector.start_date}}">
-                    <label for="end_date">End Date</label>
-                    <input type="date" id="end_date" name="end_date" value="{{date_selector.end_date}}">
+                    <label for="start-date">Start Date</label>
+                    <input type="date" class="date-box" id="start-date" name="start_date" value="{{date_selector.start_date}}">
+                    <label for="end-date" class="end-date-label">End Date</label>
+                    <input type="date" class="date-box" id="end-date" name="end_date" value="{{date_selector.end_date}}">
                     <button class="button" type="submit">Apply</button>
                 </div>
             </form>

@@ -1,22 +1,28 @@
 body {
     background-color: #F6F5F5;
+    padding: 0;
+    margin: 0;
 }
 
 h1 {
-    /* font-family: 'Corben', cursive; */
-    font-family: 'Baloo Tamma 2', cursive;
+  
     font-size: 3.2em;
-    color: #30475E;
+    color: #30475E;  
 }
 
-h2, h3, h4, h5, p, ul, td, th, label {
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+h1, h2, h3, h4, h5, p, ul, td, th, label {
     font-family: 'Baloo Tamma 2', cursive;
 }
+
 
 nav > ul {
     list-style-type: none;
     text-decoration: none;
-    /* font-family: 'Baloo Tamma 2', cursive; */
     font-size: 1.5em;
     margin-right: 30px 
 }
@@ -39,10 +45,32 @@ header {
 #header-logo {
     margin: 20px 0 10px 25px;
     color: #30475E;
+    text-decoration: none;
 }
 
 #logo-first-slash {
     color: #EE6F57;
+    text-decoration: none;
+}
+
+hr {
+    margin:0;
+}
+
+.welcome-splash {
+    height: 100vh;
+    width: 100%;
+    background-color: #00334E ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: ;
+}
+
+#welcome-logo {
+    color: #F6F5F5;
+    font-size: 10em;
+
 }
 
 
@@ -54,7 +82,7 @@ header {
 }
 
 .top-section {
-    width: 100%;
+    width: 90%;
     display:  flex;
     padding: 10px;
     align-items: center;
@@ -69,7 +97,7 @@ header {
 }
 
 .main-content {
-    padding: 10px;
+    padding: 0 0px 0px 10px;
 }
 
 .section-split {
@@ -108,9 +136,25 @@ th {
     font-size: 1em;    
 }
 
+.date-box {
+    padding: 7px;
+}
+.end-date-label {
+    margin-left: 5px;
+}
+
 .button {
     padding: 10px 15px;
+    background-color: transparent;
+    color: #EE6F57;
+    border-color: #EE6F57;
 }
+
+.button:hover, .button:focus {
+    color: #F6F5F5;
+    background-color:#EE6F57; 
+}
+
 
 .summary {
     display: flex;
