@@ -5,7 +5,7 @@ import datetime
 
 from models.transaction import Transaction
 from models.date import Date
-from models.date_object import date_selector 
+from models.objects import filter 
 
 
 import repositories.transaction_repository as transaction_repository
@@ -37,27 +37,47 @@ def add_transaction():
     transaction_repository.save(transaction)
     return redirect('/transactions')
 
-#Read All
+#transaction main
 @transaction_blueprint.route('/transactions')
 def transactions():
 
-    transactions = transaction_repository.select_by_date(date_selector.start_date, date_selector.end_date)
-    total_spent = Transaction.total_spending(transactions) 
+    all_transactions = transaction_repository.select_all()
+    all_tags = tag_repository.select_all()
+    all_merchants = merchant_repository.select_all()
 
-    for transaction in transactions:
+    if filter.tag is None and filter.merchant is None:
+        filtered_transactions = transaction_repository.select_by_date()
+    if filter.merchant is None:
+        if filter.tag:
+            filtered_transactions = transaction_repository.select_by_date_tag()
+    if filter.tag is None:
+        if filter.merchant:
+            filtered_transactions = transaction_repository.select_by_date_merchant()
+    else:
+        filtered_transactions = transaction_repository.select_by_date_merchant_tag()
+
+
+
+    
+    filtered_transactions = transaction_repository.select_by_date(filter.start_date, filter.end_date)
+    total_spent = Transaction.total_spending(filtered_transactions) 
+
+    for transaction in filtered_transactions:
         transaction = transaction.amount_formatted()
 
    
-    return render_template('transactions/index.html', transactions=transactions, total_spent=total_spent, date_selector=date_selector)
+    return render_template('transactions/index.html', filtered_transactions=filtered_transactions, total_spent=total_spent, date_selector=date_selector, all_tags=all_tags, all_merchants=all_merchants)
 
 
 @transaction_blueprint.route('/transactions/change_date', methods=['POST'])
 def change_date_transactions():
-    start_date = request.form['start_date']
-    end_date = request.form['end_date']
+    filter.start_date = request.form['start_date']
+    filter.end_date = request.form['end_date']
+    filter.tag = request.form['tag']
+    filter.merchant = request.form['tag']
 
-    global date_selector
-    date_selector = Date(start_date, end_date)
+    
+   
     return redirect('/transactions')
 
 

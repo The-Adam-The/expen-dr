@@ -64,7 +64,7 @@ hr {
     display: flex;
     justify-content: center;
     align-items: center;
-    backdrop-filter: ;
+    
 }
 
 #welcome-logo {
@@ -96,10 +96,6 @@ hr {
     align-self: flex-end;
 }
 
-.main-content {
-    
-}
-
 .section-split {
     display: flex;
     justify-content: space-between;
@@ -113,6 +109,14 @@ hr {
     margin-left: 15px;
 }
 
+.transaction-filter {
+    display: flex;
+
+}
+
+input, label {
+    display: block;
+}
 
 table {
     border: 1px solid #00334E;
@@ -122,6 +126,51 @@ table {
 
 .table-div {
     width: 100%;
+}
+
+
+.date-box {
+    padding: 7px 5px;
+    
+}
+
+.select-box {
+    padding: 10px;
+    width: 200px;
+}
+
+.first-filter-div {
+    margin: 0 4px 0 0;
+}
+
+.filter-div {
+    margin: 0 4px;
+}
+
+
+.button {
+    padding: 10px 15px;
+    background-color: transparent;
+    color: #EE6F57;
+    border-color: #EE6F57;
+}
+
+.filter-button-div {
+  display: flex;
+  align-items: flex-end;
+  margin-left: 20px;
+}
+
+.filter-button {
+    height: 55%;
+    width: 100px;
+    padding: 0 15px;
+    margin-bottom: 2px;
+}
+
+.button:hover, .button:focus {
+    color: #F6F5F5;
+    background-color:#EE6F57; 
 }
 
 th, td {
@@ -135,26 +184,6 @@ th {
     font-weight: 500;
     font-size: 1em;    
 }
-
-.date-box {
-    padding: 7px;
-}
-.end-date-label {
-    margin-left: 5px;
-}
-
-.button {
-    padding: 10px 15px;
-    background-color: transparent;
-    color: #EE6F57;
-    border-color: #EE6F57;
-}
-
-.button:hover, .button:focus {
-    color: #F6F5F5;
-    background-color:#EE6F57; 
-}
-
 
 .summary {
     display: flex;
