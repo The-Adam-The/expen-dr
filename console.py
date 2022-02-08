@@ -79,17 +79,17 @@ for result in tran_results:
 
 
 #Show all tags
-# tag_results = tag_repository.select_all()
+tag_results = tag_repository.select_all()
 
-# for result in tag_results:
-#     print(result.__dict__)
+for result in tag_results:
+    print(result.__dict__)
 
 
 
 #Show all merchants
-# merch_results = merchant_repository.select_all()
+merch_results = merchant_repository.select_all()
 
-# for result in merch_results:
-#     print(result.__dict__)
+for result in merch_results:
+    print(result.__dict__)
 
 pdb.set_trace()

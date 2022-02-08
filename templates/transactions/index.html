@@ -7,16 +7,16 @@
               
                 <div class="first-filter-div">
                     <label for="start-date">Start Date</label>
-                    <input type="date" class="date-box" id="start-date" name="start_date" value="{{date_selector.start_date}}">
+                    <input type="date" class="date-box" id="start-date" name="start_date" value="{{filter.start_date}}">
                 </div>
                 <div class="filter-div">
                     <label for="end-date">End Date</label>
-                    <input type="date" class="date-box" id="end-date" name="end_date" value="{{date_selector.end_date}}">
+                    <input type="date" class="date-box" id="end-date" name="end_date" value="{{filter.end_date}}">
                 </div>
                 <div class="filter-div">
                 <label for="merchant">Merchant</label>
                     <select name="merchant" id="transaction-merchant-name" class="select-box">
-                        <option value="all">--All--</option>
+                        <option value="">--All--</option>
                         {% for merchant in all_merchants %}
                         <option value="{{merchant.id}}">{{merchant.name}}</option>
                         {% endfor %}
@@ -25,7 +25,7 @@
                 <div class="filter-div">
                 <label for="tag">Tag</label>
                     <select name="tag" id="transaction-tag-name" class="select-box">
-                        <option value="all">--All--</option>
+                        <option value="">--All--</option>
                         {% for tag in all_tags %}
                         <option value="{{tag.id}}">{{tag.name}}</option>
                         {% endfor %}
@@ -54,7 +54,7 @@
                 {% for transaction in filtered_transactions  %}
                 <tr>
                     <td><a href="transactions/{{transaction.id}}">{{transaction.date}}</a></td>
-                    <td>£{{transaction.amount_formatted()}} <a href="merchants/{{transaction.merchant.id}}"></a></td>
+                    <td>{{transaction.amount_formatted()}} <a href="merchants/{{transaction.merchant.id}}"></a></td>
                     <td><a href="merchants/{{transaction.merchant.id}}">{{transaction.merchant.name}}</a> </td>
                     <td><a href="tags/{{transaction.tag.id}}">{{transaction.tag.name}}</a></td>
                     <td><form action="transactions/{{transaction.id}}/edit">
@@ -73,7 +73,7 @@
 
     </section>
     <section class="summary">
-        <h2 class="expense-statement">Your total expenditure for this period is: £{{total_spent}}</h2>
+        <h2 class="expense-statement">Your total expenditure for this period is: {{total_spent}}</h2>
     
     <section class="graph-space">
 

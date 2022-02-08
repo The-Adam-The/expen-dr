@@ -42,6 +42,39 @@ def select(id):
         return transaction
 
 
+def select_filter(start_date, end_date, merchant_id = None, tag_id= None):
+
+    transactions = []
+
+    sql = """
+
+    SELECT * 
+    FROM transactions 
+    WHERE 
+         date BETWEEN %s AND %s
+    INTERSECT 
+    SELECT *
+    FROM transactions
+    WHERE 
+        (merchant_id IS NULL OR merchant_id = %s)
+    INTERSECT 
+    SELECT * 
+    FROM transactions
+    WHERE
+        (tag_id IS NULL OR tag_id = %s);
+    """
+    values = [start_date, end_date, merchant_id, tag_id]
+    results = run_sql(sql, values)
+    
+    if results is not None:
+        for row in results:
+            merchant = merchant_repository.select(row['merchant_id'])
+            tag = tag_repository.select(row['tag_id'])
+            transaction = Transaction(row['date'], row['amount'], merchant, tag, row['id'])
+            transactions.append(transaction)
+    return transactions
+
+
 def select_by_date(start_date, end_date):
     transactions = []
 
@@ -81,6 +114,49 @@ def select_by_tag(tag):
             transaction = Transaction(row['date'], row['amount'], merchant, tag, row['id'])
             transactions.append(transaction)
     return transactions
+
+
+def select_by_date_tag(start_date, end_date, tag_id):
+    transactions = []
+    sql = "SELECT * FROM transactions WHERE (date BETWEEN %s AND %s) AND (tag_id = %s)"
+    values = [start_date, end_date, tag_id]
+    results = run_sql(sql, values)
+    if results is not None:
+        for row in results:
+            merchant = merchant_repository.select(row['merchant_id'])
+            tag = tag_repository.select(row['tag_id'])
+            transaction = Transaction(row['date'], row['amount'], merchant, tag, row['id'])
+            transactions.append(transaction)
+    return transactions
+
+def select_by_date_merchant(start_date, end_date, merchant_id):
+    transactions = []
+    sql = "SELECT * FROM transactions WHERE (date BETWEEN %s AND %s) AND (merchant_id = %s)"
+    values = [start_date, end_date, merchant_id]
+    results = run_sql(sql, values)
+
+    if results is not None:
+        for row in results:
+            merchant = merchant_repository.select(row['merchant_id'])
+            tag = tag_repository.select(row['tag_id'])
+            transaction = Transaction(row['date'], row['amount'], merchant, tag, row['id'])
+            transactions.append(transaction)
+    return transactions
+
+def select_by_date_merchant_tag(start_date, end_date, merchant_id, tag_id):
+    transactions = []
+    sql = "SELECT * FROM transactions WHERE (date BETWEEN %s AND %s) AND (merchant_id = %s) AND (tag_id = %s)"
+    values = [start_date, end_date, merchant_id, tag_id]
+    results = run_sql(sql, values)
+
+    if results is not None:
+        for row in results:
+            merchant = merchant_repository.select(row['merchant_id'])
+            tag = tag_repository.select(row['tag_id'])
+            transaction = Transaction(row['date'], row['amount'], merchant, tag, row['id'])
+            transactions.append(transaction)
+    return transactions
+
 
 
 def update_transaction(transaction):

@@ -45,39 +45,46 @@ def transactions():
     all_tags = tag_repository.select_all()
     all_merchants = merchant_repository.select_all()
 
-    if filter.tag is None and filter.merchant is None:
-        filtered_transactions = transaction_repository.select_by_date()
-    if filter.merchant is None:
-        if filter.tag:
-            filtered_transactions = transaction_repository.select_by_date_tag()
-    if filter.tag is None:
-        if filter.merchant:
-            filtered_transactions = transaction_repository.select_by_date_merchant()
+    global filter
+
+    if filter.merchant_id:
+        if filter.tag_id:
+            filtered_transactions = transaction_repository.select_by_date_merchant_tag(filter.start_date, filter.end_date, filter.merchant_id, filter.tag_id)
+        else:
+            filtered_transactions = transaction_repository.select_by_date_merchant(filter.start_date, filter.end_date, filter.merchant_id)
     else:
-        filtered_transactions = transaction_repository.select_by_date_merchant_tag()
-
-
+        if filter.tag_id:
+            filtered_transactions = transaction_repository.select_by_date_tag(filter.start_date, filter.end_date, filter.tag_id)
+        else:
+            filtered_transactions = transaction_repository.select_by_date(filter.start_date, filter.end_date)
 
     
-    filtered_transactions = transaction_repository.select_by_date(filter.start_date, filter.end_date)
     total_spent = Transaction.total_spending(filtered_transactions) 
 
     for transaction in filtered_transactions:
         transaction = transaction.amount_formatted()
 
-   
-    return render_template('transactions/index.html', filtered_transactions=filtered_transactions, total_spent=total_spent, date_selector=date_selector, all_tags=all_tags, all_merchants=all_merchants)
+    return render_template('transactions/index.html', filtered_transactions=filtered_transactions, total_spent=total_spent, filter=filter, all_tags=all_tags, all_merchants=all_merchants)
 
 
 @transaction_blueprint.route('/transactions/change_date', methods=['POST'])
 def change_date_transactions():
+    global filter
+
     filter.start_date = request.form['start_date']
     filter.end_date = request.form['end_date']
-    filter.tag = request.form['tag']
-    filter.merchant = request.form['tag']
-
     
-   
+    if request.form['merchant'] == "":
+        filter.merchant_id = None;
+
+    else:
+        filter.merchant_id = request.form['merchant']
+    
+    if request.form['tag'] == "":
+        filter.tag_id = None
+    else:
+        filter.tag_id = request.form['tag']
+
     return redirect('/transactions')
 
 

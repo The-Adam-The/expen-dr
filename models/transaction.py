@@ -11,7 +11,7 @@ class Transaction:
         amount_list = []
         for transaction in transactions:
             amount_list.append(transaction.amount)   
-        return '{num:.2f}'.format(num = sum(amount_list))
+        return '£{num:,.2f}'.format(num = sum(amount_list))
 
     def amount_formatted(self):
-        return '{num:.2f}'.format(num = self.amount)
+        return '£{num:,.2f}'.format(num = self.amount)
