@@ -250,12 +250,43 @@ th {
 }
 
 .tag-merchant-update-form > label {
-    margin: auto 5px auto 0
+    margin: auto 5px auto 0;
 }
 
 .tag-merchant-update-form > input {
     margin-right: 5px;
+   
 }
+
+.tran-update-form {
+    display: flex;
+    margin-left: 50px;  
+}
+
+.tran-update-div {
+    margin-right: 5px;
+}
+
+.tran-update-div > input, select {
+    padding: 10px;
+}
+
+#date-input {
+    padding: 7px;
+}
+
+
+.submit-button-div {
+    display: flex;
+    align-items: flex-end;
+}
+
+.tran-update-form > .button {
+    height: 100%;
+   
+}
+
+
 
 /* 
 
