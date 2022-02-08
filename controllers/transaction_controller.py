@@ -58,7 +58,7 @@ def transactions():
         else:
             filtered_transactions = transaction_repository.select_by_date(filter.start_date, filter.end_date)
 
-    
+    filtered_transactions.sort(key=lambda x: x.date, reverse=True)
     total_spent = Transaction.total_spending(filtered_transactions) 
 
     for transaction in filtered_transactions:

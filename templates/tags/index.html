@@ -1,13 +1,16 @@
 {% extends 'base.html'%}
 
 {% block content %}
-<a href="tags/new"><p>Add Tag</p></a>
 
-<table>
+
+<table class="tag-merchant-table">
     <tr>
         <th>Name</th>
-        <th></th>
-        <th></th>
+        <th colspan="2">
+            <form action="tags/new" class="transaction-new-button">
+                <button class="button" value="submit">Add Tag</button>
+            </form>
+        </th>
     </tr>
     {% for tag in tags  %}
         
@@ -25,6 +28,7 @@
         </td>
     </tr>
     {% endfor %}
+    <tr class="final-row"></tr>
 </table>
 
 

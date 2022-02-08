@@ -4,6 +4,12 @@ body {
     margin: 0;
 }
 
+
+.main-content {
+    margin-bottom: 20px;
+
+}
+
 h1 {
   
     font-size: 3.2em;
@@ -149,7 +155,7 @@ table {
 
 
 .button {
-    padding: 10px 15px;
+    padding: 10px 30px;
     background-color: transparent;
     color: #EE6F57;
     border-color: #EE6F57;
@@ -185,6 +191,11 @@ th {
     font-size: 1em;    
 }
 
+.final-row {
+    width: auto;
+    height: 30px;
+}
+
 .summary {
     display: flex;
     flex-direction: column;
@@ -215,10 +226,36 @@ th {
     border-radius: 10px;
 }
 
-.merchant-tag-table {
-    margin: 40px 0 0 20px;
+.tag-merchant-table {
+    margin: 40px 0 30px 50px;
 }
 
+.show-split {
+    margin-left: 35px;
+    margin-right: 70px;
+
+}
+
+.tag-merchant-header {
+    margin-left: 50px;
+}
+
+.tag-merchant-summary .expense-statement {
+    margin-top: 0;
+}
+
+.tag-merchant-update-form {
+    display: flex;
+    margin-left: 50px;   
+}
+
+.tag-merchant-update-form > label {
+    margin: auto 5px auto 0
+}
+
+.tag-merchant-update-form > input {
+    margin-right: 5px;
+}
 
 /* 
 

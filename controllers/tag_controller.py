@@ -39,7 +39,7 @@ def show(id):
 
 #Update
 @tags_blueprint.route('/tags/<id>/edit')
-def edit_tag(id):
+def edit_tag(id): 
     tag = tag_repository.select(id)
     return render_template('tags/edit.html', tag=tag)
 

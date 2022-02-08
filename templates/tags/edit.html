@@ -1,10 +1,14 @@
 {% extends 'base.html'%}
 {% block content %}
 
+<h1 class="tag-merchant-header">{{ tag.name }}</h1>
+
 <form action="/tags/{{tag.id}}" method="post">
-    <label for="name">Tag Name:</label>
-    <input type="text" name="name" required autofocus>
-    <button class="button" type="submit">Update Tag</button>
+    <div class="tag-merchant-update-form">
+        <label for="name">New Tag Name:</label>
+        <input type="text" name="name" required autofocus>
+        <button class="button" type="submit">Update Tag</button>
+    </div>  
 </form>
 
 {% endblock %}

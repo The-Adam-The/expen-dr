@@ -46,10 +46,10 @@
                     <th>Amount</th>
                     <th>Merchant</th>
                     <th>Tag</th>
-                    <th> <form action="transactions/new" class="transaction-new-button">
+                    <th colspan="2"> <form action="transactions/new" class="transaction-new-button">
                         <button class="button" value="submit">Add Transaction</button>
                     </form></th>
-                    <th></th>
+                   
                 </tr>
                 {% for transaction in filtered_transactions  %}
                 <tr>
@@ -68,6 +68,8 @@
                     </td>
                 </tr>   
                 {% endfor %}
+                <tr class="final-row">
+                </tr>
             </table>
         </div>
 
