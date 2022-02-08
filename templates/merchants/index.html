@@ -5,16 +5,16 @@
         <tr>
             <th>Name</th>
             <th colspan="2">
-                <form action="merchants/new" class="transaction-new-button">
+                <form action="/merchants/new" class="transaction-new-button">
                 <button class="button" value="submit">Add Merchant</button>
                 </form>
             </th>
         </tr>
         {% for merchant in merchants  %}
         <tr>
-            <td><a href="merchants/{{merchant.id}}">{{merchant.name}} </a></td>
+            <td><a href="/merchants/{{merchant.id}}">{{merchant.name}} </a></td>
             <td> 
-                <form action="merchants/{{merchant.id}}/edit">
+                <form action="/merchants/{{merchant.id}}/edit">
                     <button class="button" type="submit">Update</button>
                 </form>
             </td>
