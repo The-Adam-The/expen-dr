@@ -1,12 +1,14 @@
 {% extends 'base.html'%}
 {% block content %}
 
-<form action="/transactions" method="post">
-    <div>
+<h1 class="tag-merchant-header">Add a new transaction</h1>
+
+<form class="tran-update-form" action="/transactions" method="post">
+    <div class="tran-update-div">
         <label for="date">Transaction Date:</label>
-        <input type="date", id="transaction-date" name="date" required autofocus>
+        <input type="date", id="date-input"  name="date" required autofocus>
     </div>
-    <div>
+    <div class="tran-update-div">
         <label for="amount">Amount</label>
         <input type="number" id="transaction-amount" name="amount" required>
     </div>
@@ -19,7 +21,7 @@
             {% endfor %}
         </select>
     </div>
-    <div>
+    <div class="tran-update-div">
         <label for="tag">Tag</label>
         <select name="tag" id="transaction-tag-name">
             <option value="">--Please select a tag--</option>
@@ -28,9 +30,9 @@
             {% endfor %}
         </select>
     </div>
-
-    <button class="button" type="submit">Add Transaction</button>
-
+    <div class="submit-button-div">
+        <button class="button" type="submit">Add Transaction</button>
+    </div>
 </form>
 
 {% endblock %}
