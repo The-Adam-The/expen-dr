@@ -16,16 +16,16 @@
                 </tr>
                 {% for daily_transaction in daily_transactions  %}
                 <tr>
-                    <td><a href="transactions/{{daily_transaction.id}}">{{daily_transaction.date}}</a></td>
-                    <td>£{{transaction.amount}} <a href="merchants/{{daily_transaction.merchant.id}}"></a></td>
-                    <td><a href="merchants/{{daily_transaction.merchant.id}}">{{daily_transaction.merchant.name}}</a> </td>
-                    <td><a href="tags/{{daily_transaction.tag.id}}">{{daily_transaction.tag.name}}</a></td>
-                    <td><form action="transactions/{{transaction.id}}/edit">
+                    <td><a href="/transactions/{{daily_transaction.id}}">{{daily_transaction.date}}</a></td>
+                    <td>£{{transaction.amount}} <a href="/merchants/{{daily_transaction.merchant.id}}"></a></td>
+                    <td><a href="/merchants/{{daily_transaction.merchant.id}}">{{daily_transaction.merchant.name}}</a> </td>
+                    <td><a href="/tags/{{daily_transaction.tag.id}}">{{daily_transaction.tag.name}}</a></td>
+                    <td><form action="/transactions/{{transaction.id}}/edit">
                             <button class="button" type="submit">Update</button>
                         </form>
                     </td> 
                     <td> 
-                        <form action="transactions/{{daily_transaction.id}}/delete" method="post">
+                        <form action="/transactions/{{daily_transaction.id}}/delete" method="post">
                             <button class="button" type="submit">Delete</button>
                         </form>
                     </td>
