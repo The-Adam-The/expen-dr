@@ -6,14 +6,12 @@ import repositories.merchant_repository as merchant_repository
 import repositories.tag_repository as tag_repository
 
 
-
 def save(transaction):
     sql = "INSERT INTO transactions (date, merchant_id, tag_id, amount) VALUES (%s, %s, %s, %s) RETURNING id"
     values = [transaction.date, transaction.merchant.id, transaction.tag.id, transaction.amount]
     results  = run_sql(sql, values)
     transaction.id = results[0]['id']
     return transaction
-
 
 def select_all():
 
@@ -40,7 +38,6 @@ def select(id):
         tag = tag_repository.select(result['tag_id'])
         transaction = Transaction(result['date'], result['amount'], merchant, tag, result['id'])
         return transaction
-
 
 def select_filter(start_date, end_date, merchant_id = None, tag_id= None):
 
@@ -73,7 +70,6 @@ def select_filter(start_date, end_date, merchant_id = None, tag_id= None):
             transaction = Transaction(row['date'], row['amount'], merchant, tag, row['id'])
             transactions.append(transaction)
     return transactions
-
 
 def select_by_date(start_date, end_date):
     transactions = []
@@ -115,7 +111,6 @@ def select_by_tag(tag):
             transactions.append(transaction)
     return transactions
 
-
 def select_by_date_tag(start_date, end_date, tag_id):
     transactions = []
     sql = "SELECT * FROM transactions WHERE (date BETWEEN %s AND %s) AND (tag_id = %s)"
@@ -156,8 +151,6 @@ def select_by_date_merchant_tag(start_date, end_date, merchant_id, tag_id):
             transaction = Transaction(row['date'], row['amount'], merchant, tag, row['id'])
             transactions.append(transaction)
     return transactions
-
-
 
 def update_transaction(transaction):
     sql = "UPDATE transactions SET(date, merchant_id, tag_id, amount) = (%s, %s, %s, %s) WHERE id = %s"
