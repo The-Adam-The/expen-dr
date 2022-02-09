@@ -1,11 +1,11 @@
 {% extends 'base.html'%}
 {% block content %}
 
-<h1>Transactions on: {{ transaction.date }}</h1>
-<div class="section-split">
+<h1 class="show-header">Transactions on: {{ transaction.date }}</h1>
+<div class="section-split show-split">
     <section class="main-info">
         <div class="table-div">
-            <table>
+            <table class="transaction-show-table">
                 <tr>
                     <th>Date</th>
                     <th>Amount</th>
@@ -35,8 +35,8 @@
             </table>
         </div>
     </section>
-    <section class="summary">
-        <h2 class="expense-statement">Amount Spent: £{{total_spent}}</h2>
+    <section class="tag-merchant-summary summary">
+        <h2 class="expense-statement">Amount Spent: {{total_spent}}</h2>
     <section class="graph-space">
     </section>
 </section>

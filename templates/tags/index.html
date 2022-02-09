@@ -14,9 +14,9 @@
     </tr>
     {% for tag in tags  %} 
     <tr>
-        <td><a href="tags/{{tag.id}}">{{ tag.name }}</a></td>
+        <td><a href="/tags/{{tag.id}}">{{ tag.name }}</a></td>
         <td>
-            <form action="tags/{{tag.id}}/edit">
+            <form action="/tags/{{tag.id}}/edit">
                 <button class="button" type="submit">Update</button>
             </form>
         </td>
