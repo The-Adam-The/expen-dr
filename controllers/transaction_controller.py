@@ -57,7 +57,6 @@ def transactions():
 
     for transaction in filtered_transactions:
         transaction = transaction.amount_formatted()
-    
     return render_template('transactions/index.html', filtered_transactions=filtered_transactions, total_spent=total_spent, filter=filter, all_tags=all_tags, all_merchants=all_merchants)
 
 #Update transaction filter
@@ -75,7 +74,6 @@ def change_date_transactions():
         filter.tag_id = None
     else:
         filter.tag_id = request.form['tag']
-
     return redirect('/transactions')
 
 
@@ -94,7 +92,6 @@ def edit_transaction(id):
     transaction = transaction_repository.select(id)
     tags = tag_repository.select_all()
     merchants = merchant_repository.select_all()
-    
     return render_template('transactions/edit.html', transaction=transaction, merchants=merchants, tags=tags)
 
 
@@ -110,7 +107,6 @@ def update_transaction(id):
 
     transaction = Transaction(date, amount, merchant, tag, id)
     transaction_repository.update_transaction(transaction)
-    
     return redirect('/transactions')
 
 
@@ -118,5 +114,4 @@ def update_transaction(id):
 @transaction_blueprint.route('/transactions/<id>/delete', methods=['POST'])
 def delete_transaction(id):
     transaction_repository.delete(id)
-    
     return redirect('/transactions')

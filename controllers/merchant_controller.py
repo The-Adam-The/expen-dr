@@ -37,7 +37,7 @@ def show(id):
     return render_template('merchants/show.html', merchant=merchant, transactions=transactions, total_spent=total_spent)
 
 
-#Update Merchants
+#Update Merchant
 @merchants_blueprint.route('/merchants/<id>/edit')
 def edit_merchant(id):
     merchant = merchant_repository.select(id)
@@ -51,7 +51,7 @@ def update_merchant(id):
     return redirect('/merchants')
 
 
-#Delete 
+#Delete Merchant
 @merchants_blueprint.route('/merchants/<id>/delete', methods=['POST'])
 def delete_merchant(id):
     merchant_repository.delete(id)

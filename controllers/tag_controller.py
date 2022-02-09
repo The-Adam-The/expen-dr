@@ -23,7 +23,7 @@ def add_tag():
     return redirect('/tags')
 
 
-#Read all
+#Tag Index
 @tags_blueprint.route('/tags')
 def tags():
     tags = tag_repository.select_all()
@@ -37,7 +37,7 @@ def show(id):
     return render_template('tags/show.html', tag=tag, transactions=transactions, total_spent=total_spent)
 
 
-#Update
+#Update Tag
 @tags_blueprint.route('/tags/<id>/edit')
 def edit_tag(id): 
     tag = tag_repository.select(id)
@@ -51,7 +51,7 @@ def update_tag(id):
     return redirect('/tags')
 
 
-#Delete
+#Delete Tag
 @tags_blueprint.route('/tags/<id>/delete', methods=['POST'])
 def delete_tag(id):
     tag_repository.delete(id)
