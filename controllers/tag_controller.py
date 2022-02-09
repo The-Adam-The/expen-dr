@@ -9,6 +9,7 @@ import repositories.transaction_repository as transaction_repository
 
 tags_blueprint = Blueprint("tags", __name__)
 
+
 #Create
 @tags_blueprint.route('/tags/new')
 def new_tag():
@@ -27,7 +28,6 @@ def add_tag():
 def tags():
     tags = tag_repository.select_all()
     return render_template('tags/index.html', tags=tags)
-
 
 @tags_blueprint.route('/tags/<id>')
 def show(id):

@@ -21,18 +21,24 @@
     <div class="tran-update-div">
         <label for="merchant">Merchant</label>
         <select name="merchant" id="transaction-merchant-name">
-            <option value="">{{transaction.merchant.name}}</option>
             {% for merchant in merchants %}
+            {% if transaction.merchant.id == merchant.id%}
+            <option value="{{merchant.id}}" selected>{{merchant.name}}</option>
+            {% else %}
             <option value="{{merchant.id}}">{{merchant.name}}</option>
+            {% endif %}
             {% endfor %}
         </select>
     </div>
     <div class="tran-update-div">
         <label for="tag">Tag</label>
         <select name="tag" id="transaction-tag-name">
-            <option value="">{{transaction.tag.name}}</option>
             {% for tag in tags %}
+            {% if transaction.tag.id == tag.id %}
+            <option value="{{tag.id}}" selected>{{tag.name}}</option>
+            {% else %}
             <option value="{{tag.id}}">{{tag.name}}</option>
+            {% endif %}
             {% endfor %}
         </select>
     </div>

@@ -15,3 +15,6 @@ class Transaction:
 
     def amount_formatted(self):
         return '£{num:,.2f}'.format(num = self.amount)
+
+    def count_number_unique_transactions(transactions):
+        return len(set(transactions))

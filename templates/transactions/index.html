@@ -14,12 +14,17 @@
                     <input type="date" class="date-box" id="end-date" name="end_date" value="{{filter.end_date}}">
                 </div>
                 <div class="filter-div">
+             
                 <label for="merchant">Merchant</label>
                     <select name="merchant" id="transaction-merchant-name" class="select-box">
                         <option value="">--All--</option>
-                        {% for merchant in all_merchants %}
-                        <option value="{{merchant.id}}">{{merchant.name}}</option>
-                        {% endfor %}
+                        {% for merchant in all_merchants  %}
+                            {% if filter.merchant_id == merchant.id %}
+                            <option value="{{merchant.id}}" selected>{{merchant.name}}</option>
+                            {% else %}
+                            <option value="{{merchant.id}}">{{merchant.name}}</option>
+                            {% endif %}
+                        {% endfor %}           
                     </select>
                 </div>
                 <div class="filter-div">
@@ -34,7 +39,6 @@
                 <div class="filter-button-div">
                     <button class="button filter-button" type="submit">Apply</button>
                 </div> 
-            
             </form>
         
          
@@ -72,7 +76,6 @@
                 </tr>
             </table>
         </div>
-
     </section>
     <section class="summary">
         <h2 class="expense-statement">Your total expenditure for this period is: {{total_spent}}</h2>
