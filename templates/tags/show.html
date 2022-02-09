@@ -3,8 +3,6 @@
 
 <h1 class="tag-merchant-header">{{ tag.name }}</h1>
 
-
-
 <div class="section-split show-split">
     <section class="main-info">
         <div class="table-div">
@@ -18,9 +16,7 @@
                         <form action="tags/new" class="transaction-new-button">
                             <button class="button" value="submit">Add Tag</button>
                         </form>
-
                     </th>
-                   
                 </tr>
                 {% for transaction in transactions  %}
                 <tr>
@@ -28,7 +24,8 @@
                     <td>£{{transaction.amount}} <a href="merchants/{{transaction.merchant.id}}"></a></td>
                     <td><a href="/merchants/{{transaction.merchant.id}}">{{transaction.merchant.name}}</a> </td>
                     <td><a href="/tags/{{transaction.tag.id}}">{{transaction.tag.name}}</a></td>
-                    <td><form action="/transactions/{{transaction.id}}/edit">
+                    <td>
+                        <form action="/transactions/{{transaction.id}}/edit">
                             <button class="button" type="submit">Update</button>
                         </form>
                     </td>
@@ -45,7 +42,7 @@
 <section class="tag-merchant-summary summary">
     <h2 class="expense-statement">Total Amount Spent: {{total_spent}}</h2>
 
-<section class="graph-space">
-
+    <section class="graph-space">
+    </section>
 </section>
 {% endblock %}

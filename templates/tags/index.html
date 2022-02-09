@@ -12,8 +12,7 @@
             </form>
         </th>
     </tr>
-    {% for tag in tags  %}
-        
+    {% for tag in tags  %} 
     <tr>
         <td><a href="tags/{{tag.id}}">{{ tag.name }}</a></td>
         <td>
@@ -30,7 +29,4 @@
     {% endfor %}
     <tr class="final-row"></tr>
 </table>
-
-
-
 {% endblock %}

@@ -20,7 +20,8 @@
                     <td>£{{transaction.amount}} <a href="/merchants/{{daily_transaction.merchant.id}}"></a></td>
                     <td><a href="/merchants/{{daily_transaction.merchant.id}}">{{daily_transaction.merchant.name}}</a> </td>
                     <td><a href="/tags/{{daily_transaction.tag.id}}">{{daily_transaction.tag.name}}</a></td>
-                    <td><form action="/transactions/{{transaction.id}}/edit">
+                    <td>
+                        <form action="/transactions/{{transaction.id}}/edit">
                             <button class="button" type="submit">Update</button>
                         </form>
                     </td> 
@@ -34,11 +35,10 @@
             </table>
         </div>
     </section>
-<section class="summary">
-    <h2 class="expense-statement">Amount Spent: £{{total_spent}}</h2>
-
-<section class="graph-space">
-
+    <section class="summary">
+        <h2 class="expense-statement">Amount Spent: £{{total_spent}}</h2>
+    <section class="graph-space">
+    </section>
 </section>
 
 
