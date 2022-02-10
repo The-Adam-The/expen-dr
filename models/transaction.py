@@ -15,3 +15,5 @@ class Transaction:
 
     def amount_formatted(self):
         return '£{num:,.2f}'.format(num = self.amount)
+
+ 

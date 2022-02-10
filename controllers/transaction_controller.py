@@ -5,6 +5,7 @@ import datetime
 
 from models.transaction import Transaction
 from models.objects import filter 
+from controllers.controller_helper import *
 
 
 import repositories.transaction_repository as transaction_repository
@@ -40,19 +41,9 @@ def transactions():
     all_tags = tag_repository.select_all()
     all_merchants = merchant_repository.select_all()
 
-    global filter
-    if filter.merchant_id:
-        if filter.tag_id:
-            filtered_transactions = transaction_repository.select_by_date_merchant_tag(filter.start_date, filter.end_date, filter.merchant_id, filter.tag_id)
-        else:
-            filtered_transactions = transaction_repository.select_by_date_merchant(filter.start_date, filter.end_date, filter.merchant_id)
-    else:
-        if filter.tag_id:
-            filtered_transactions = transaction_repository.select_by_date_tag(filter.start_date, filter.end_date, filter.tag_id)
-        else:
-            filtered_transactions = transaction_repository.select_by_date(filter.start_date, filter.end_date)
 
-    filtered_transactions.sort(key=lambda x: x.date, reverse=True)
+    filtered_transactions = select_db_query(filter)
+    filtered_transactions.sort(key=lambda transaction: transaction.date, reverse=True)
     total_spent = Transaction.total_spending(filtered_transactions) 
 
     for transaction in filtered_transactions:
@@ -62,7 +53,6 @@ def transactions():
 #Update transaction filter
 @transaction_blueprint.route('/transactions/change_date', methods=['POST'])
 def change_date_transactions():
-    global filter
     filter.start_date = request.form['start_date']
     filter.end_date = request.form['end_date']
     

@@ -36,33 +36,6 @@ def create_transaction(min_payment= 1, max_payment = 1000, start_date = '-2y', e
     transaction_repository.save(transaction)
 
 
-
-
-# merchant_repository.delete_all()
-# tag_repository.delete_all()
-
-# transaction_repository.delete_all()
-
-# merchant1 = Merchant('Tesco')
-# merchant_repository.save(merchant1)
-
-# merchant2 = Merchant('Amazon')
-# merchant_repository.save(merchant2)
-
-# tag1 = Tag('Grocery')
-# tag_repository.save(tag1)
-
-# tag2 = Tag('Tax')
-# tag_repository.save(tag2)
-
-
-# transaction1 = Transaction('2022-01-31', 30.5, merchant1, tag1)
-# transaction_repository.save(transaction1)
-
-# transaction2 = Transaction('2021-12-23', 199.99, merchant2, tag1)
-# transaction_repository.save(transaction2)
-
-
 # create_merchant(retailers)
 
 # create_tag(tags)
