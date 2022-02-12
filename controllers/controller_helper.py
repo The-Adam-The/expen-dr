@@ -13,3 +13,10 @@ def select_db_query(filter):
             filtered_transactions = transaction_repository.select_by_date(filter.start_date, filter.end_date)
 
     return filtered_transactions
+
+def no_value_checker(form_input):
+    if form_input == "":
+        return None;
+    return form_input
+
+

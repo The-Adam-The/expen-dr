@@ -55,15 +55,10 @@ def transactions():
 def change_date_transactions():
     filter.start_date = request.form['start_date']
     filter.end_date = request.form['end_date']
+
+    filter.merchant_id = no_value_checker(request.form['merchant'])
+    filter.tag_id = no_value_checker(request.form['tag'])
     
-    if request.form['merchant'] == "":
-        filter.merchant_id = None;
-    else:
-        filter.merchant_id = request.form['merchant']
-    if request.form['tag'] == "":
-        filter.tag_id = None
-    else:
-        filter.tag_id = request.form['tag']
     return redirect('/transactions')
 
 
