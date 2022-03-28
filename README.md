@@ -1,7 +1,10 @@
-# python_project
-Capstone project for Python unit
+# Expen//dr
+
+Capstone project for Python unit at Codeclan.
 
 A simple expenditure app that allows users to track their expenditures. 
+
+#Installation
 
 To run the app, you need to install Python 3.8 or greater, and Flask is required. 
 
